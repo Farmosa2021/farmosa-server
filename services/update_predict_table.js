@@ -36,14 +36,15 @@ async function update() {
     });
 
     // Creating table "predict_table"
-    var loadStatement = "load data local infile '../data/predict_table.csv'\n \
-    into table predict_table\n  \
-    fields terminated by ','\n \
-    enclosed by '\"'\n \
-    lines terminated by '\\n'\n \
-    ignore 1 lines;";
-
-    await db.query(loadStatement);
+    // var loadStatement = "load data local infile '../data/predict_table.csv' \
+    // into table predict_table  \
+    // fields terminated by ',' \
+    // enclosed by '\"' \
+    // lines terminated by '\\n' \
+    // ignore 1 lines;";
+    
+    // await db.query(loadStatement);
+    await db.load_query('./data/predict_table.csv');
 
     console.log("Update predict table successfully.");
 }

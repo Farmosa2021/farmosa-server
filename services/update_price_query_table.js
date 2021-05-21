@@ -28,7 +28,7 @@ async function update(){
     /* TEST: function to GET report list */
     request({url: URL, json: true}, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            console.log(body) // Print the json response
+            // console.log(error) // Print the json response
         }
         for (var i = 0; i < body.length; i++) {
             var d = body[i]["交易日期"],
