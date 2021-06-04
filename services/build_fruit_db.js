@@ -3,8 +3,11 @@ const cheerio = require("cheerio");
 const db = require("./db");
 
 async function getFruitName() {
-    var name_query = "SELECT DISTINCT item FROM price_query;";
-    const data = await db.query(name_query);
+    var name_query1 = "SELECT DISTINCT item FROM price_query;";
+    var name_query2 = "SELECT COLUMN_NAME as item FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'predict_table'";
+    const data1 = await db.query(name_query1);
+    const data2 = await db.query(name_query2);
+    data = data2.concat(data1);
 
     const meta = { res_num: data.length };
     return {
@@ -24,7 +27,7 @@ async function imageCrawler() {
     var res = await getFruitName();
     // console.log(res.data)
     for (var i in res.data) {
-        // sleep(100);
+        sleep(100);
         console.log(res.data[i].item);
         var fruit_name = res.data[i].item.toString("utf8");
         var imageUrl =
@@ -42,24 +45,25 @@ async function imageCrawler() {
                     console.log("err: ", error);
                     return;
                 }
-                console.log(body);
+                // console.log(body);
                 const data = [];
                 const $ = cheerio.load(body); // 載入 body
-                const list = $(".bRMDJf");
-                console.log(list);
-                for (let i = 0; i < list.length; i++) {
+                const list = $("div div div div div div");
+                // const list = $(".bRMDJf");
+                // console.log(list);
+                for (let i = 0; i < 1; i++) {
                     // const title = list.eq(i).find(".title a").text();
                     // const author = list.eq(i).find(".meta .author").text();
                     // const date = list.eq(i).find(".meta .date").text();
                     const link = list.eq(i).find("img").attr("src");
                     console.log(link);
                     // data.push({ title, author, date, link });
+                    sleep(100);
                 }
 
                 // console.log(data);
             }
         );
-        break;
     }
 }
 
