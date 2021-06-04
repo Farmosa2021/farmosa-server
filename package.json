@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Farmosa2021/farmosa-server#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.9",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "request": "^2.88.2",
