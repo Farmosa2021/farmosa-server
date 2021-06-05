@@ -1,8 +1,10 @@
 const db = require("./db");
 
 async function create_table() {
-
+    await db.query("SET FOREIGN_KEY_CHECKS=0;")
     await db.query("DROP TABLE IF EXISTS Post");
+    await db.query("SET FOREIGN_KEY_CHECKS=1;")
+
     var createStatement ="CREATE TABLE Post ( \
         PID INT NOT NULL AUTO_INCREMENT, \
         author VARCHAR(20) NOT NULL, \

@@ -9,7 +9,7 @@ const router = express.Router();
 // content
 // PID
 //* SHOW all posts
-router.get("/", asyrouternc function (req, res, next) {
+router.get("/", async function (req, res, next) {
     // Get posts from database
     res.json(await post_db.get_data())
 });
