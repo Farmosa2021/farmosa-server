@@ -28,6 +28,7 @@ const HOST = '0.0.0.0';
 app.listen(PORT, HOST, function(){
     predict_table.update();
     price_query_table.update();
-    // post_db.create_table()
+    post_db.create_table();
+    // post_db.add_some_data();
 });
 console.log(`Running on http://${HOST}:${PORT}`);

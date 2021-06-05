@@ -9,31 +9,36 @@ const router = express.Router();
 // content
 // PID
 //* SHOW all posts
-router.get("/", function (req, res) {
+router.get("/", asyrouternc function (req, res, next) {
     // Get posts from database
-    res.send(post_db.get_data());
+    res.json(await post_db.get_data())
 });
 //* SHOW post
-router.get("/:id", function (req, res) {
+router.get("/:id", async function (req, res, next) {
     // find a campground and show the info
-    post_db.search_data_by_id(req.params.id)
+    res.json(await post_db.search_data_by_id(req.params.id))
 });
 
 //* CREATE
 router.get("/new", function (req, res) {
     res.send("new page!");
 });
-router.post("/", function (req, res) {
+router.post("/", async function (req, res, next) {
     // get data from format and add to array
     // var newPost = req.body.newPost
-    var newPost = {
-        author: req.body.author,
-        title: req.body.title,
-        fruit: req.body.fruit,
-        content: req.body.content
-    };
-    post_db.insert_data(newPost)
-
+    try{
+        var newPost = {
+            author: req.body.author,
+            title: req.body.title,
+            fruit: req.body.fruit,
+            content: req.body.content
+        };
+        await post_db.insert_data(newPost)
+        console.log("Insert data...")
+        console.log(JSON.stringify(newPost))
+    }catch(err){
+        console.log(err);
+    }
 });
 
 module.exports = router;
