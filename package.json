@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Farmosa2021/farmosa-server#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "request": "^2.88.2",

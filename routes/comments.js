@@ -16,21 +16,12 @@ router.get("/", async function (req, res, next) {
 
 
 //* CREATE
-router.get("/new", function (req, res) {
-    res.send("new page!");
-});
 router.post("/", async function (req, res, next) {
     // get data from format and add to array
     // var newComment = req.body.newComment
     try{
-        var newComment = {
-            author: req.body.author,
-            content: req.body.content,
-            PID: req.params.id
-        };
-        await comment_db.insert_data(newComment)
+        res.json(await comment_db.insert_data(req.body, req.params.id))
         console.log("Insert data...")
-        console.log(JSON.stringify(newComment))
     }catch(err){
         console.log(err);
     }
@@ -39,18 +30,9 @@ router.post("/", async function (req, res, next) {
 
 
 //* EDIT
-router.get("/:cid/edit", function (req, res) {
-    res.send("Edit page!");
-});
-router.put("/:cid", function (req, res) { 
-    comment_db.search_data_by_id_and_update(req.params.cid, req.body.newComment , function (err, foundPost) {
-        if(err){
-            res.redirect("/posts")
-        }
-        else{
-            res.redirect("/posts/"+req.params.id)
-        }
-      })
+router.put("/:cid",async function (req, res) { 
+        console.log("Update comment...")
+        res.json(await comment_db.search_data_by_id_and_update(req.params.id, req.params.cid, req.body))
  })
 
 

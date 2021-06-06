@@ -36,22 +36,34 @@ async function get_data() {
         return err
     }
 }
-async function insert_data(newData) {
-    const data = await db.query(
-        "INSERT INTO Comment VALUES(?)",
-        JSON.stringify(newData)
-    );
-    return data;
+async function insert_data(newData, PID) {
+    try {
+        const data = await db.query(
+            "INSERT INTO Comment (PID,author,content) VALUES (?,?,?)",
+            [PID, newData.author, newData.content]
+        );
+        const response = { result: "success" };
+        return { data, response };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
 }
 async function search_data_by_id(PID) {
     var statement = "SELECT * FROM Comment where PID=(?)";
     const data = await db.query(statement, [PID]);
     return data;
 }
-async function search_data_by_id_and_update(PID, updateData) {
-    var statement = "UPDATE Comment SET(?) WHERE CID=(?)";
-    const data = await db.query(statement, [JSON.stringify(updateData), CID]);
-    return data;
+async function search_data_by_id_and_update(PID, CID, updateData) {
+    try {
+        var statement = "UPDATE Comment SET author=(?),content=(?) WHERE PID=(?) AND CID=(?)";
+        const data = await db.query(statement, [updateData.author, updateData.content, PID, CID]);
+        const response = { result: "success" };
+        return { data, response };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
 }
 module.exports = {
     // add_some_data,

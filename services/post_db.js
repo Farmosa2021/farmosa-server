@@ -1,11 +1,12 @@
 const db = require("./db");
 
 async function create_table() {
-    await db.query("SET FOREIGN_KEY_CHECKS=0;")
+    await db.query("SET FOREIGN_KEY_CHECKS=0;");
     await db.query("DROP TABLE IF EXISTS Post");
-    await db.query("SET FOREIGN_KEY_CHECKS=1;")
+    await db.query("SET FOREIGN_KEY_CHECKS=1;");
 
-    var createStatement ="CREATE TABLE Post ( \
+    var createStatement =
+        "CREATE TABLE Post ( \
         PID INT NOT NULL AUTO_INCREMENT, \
         author VARCHAR(20) NOT NULL, \
         title VARCHAR(40) NOT NULL, \
@@ -15,9 +16,11 @@ async function create_table() {
         );";
     await db.query(createStatement);
     console.log("Create Post table successfully.");
-    var s1 = 'insert into Post (author,title,fruit,content) values ("Jacky", "DB cool!!!", "banana", "OH wow SO NICE!! I cannot wait to eat it up!!!");'
+    var s1 =
+        'insert into Post (author,title,fruit,content) values ("Jacky", "DB cool!!!", "banana", "OH wow SO NICE!! I cannot wait to eat it up!!!");';
     await db.query(s1);
-    var s2 = 'insert into Post (author,title,fruit,content) values ("Chris", "DB nono cool!!!", "apple", "ALAHUAGUA!! I cannot wait to eat it up!!!");'
+    var s2 =
+        'insert into Post (author,title,fruit,content) values ("Chris", "DB nono cool!!!", "apple", "ALAHUAGUA!! I cannot wait to eat it up!!!");';
     await db.query(s2);
     console.log("Add 2 Data..");
 }
@@ -26,31 +29,53 @@ async function create_table() {
 // }
 async function get_data() {
     var statement = "SELECT * FROM Post;";
-    try{
+    try {
         const data = await db.query(statement);
         console.log(data);
         return data;
-    }catch(err){
+    } catch (err) {
         console.log(err);
-        return err
+        return err;
     }
 }
 async function insert_data(newData) {
-    const data = await db.query(
-        "INSERT INTO Post VALUES(?)",
-        JSON.stringify(newData)
-    );
-    return data;
+    try {
+        const data = await db.query(
+            "INSERT INTO Post (author,title,fruit,content) VALUES (?,?,?,?)",
+            [newData.author, newData.title, newData.fruit, newData.content]
+        );
+        const response = { result: "success" };
+        return { data, response };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
 }
 async function search_data_by_id(PID) {
     var statement = "SELECT * FROM Post where PID=(?)";
     const data = await db.query(statement, [PID]);
     return data;
 }
-async function search_data_by_id_and_update(PID, updateData) {
-    var statement = "UPDATE Post SET(?) WHERE PID=(?)";
-    const data = await db.query(statement, [JSON.stringify(updateData), PID]);
+async function search_data_by_fruit(fruitName) {
+    var statement = "SELECT * FROM Post where fruit=(?)";
+    const data = await db.query(statement, [fruitName]);
     return data;
+}
+async function search_data_by_user(author) {
+    var statement = "SELECT * FROM Post where author=(?)";
+    const data = await db.query(statement, [author]);
+    return data;
+}
+async function search_data_by_id_and_update(PID, updateData) {
+    try {
+        var statement = "UPDATE Post SET author=(?),title=(?),fruit=(?),content=(?) WHERE PID=(?)";
+        const data = await db.query(statement, [updateData.author,updateData.title, updateData.fruit, updateData.content, PID]);
+        const response = { result: "success" };
+        return { data, response };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
 }
 module.exports = {
     // add_some_data,
@@ -58,5 +83,7 @@ module.exports = {
     get_data,
     insert_data,
     search_data_by_id,
-    search_data_by_id_and_update
+    search_data_by_id_and_update,
+    search_data_by_fruit,
+    search_data_by_user,
 };
