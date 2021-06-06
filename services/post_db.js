@@ -57,12 +57,12 @@ async function search_data_by_id(PID) {
     return data;
 }
 async function search_data_by_fruit(fruitName) {
-    var statement = "SELECT * FROM Post where fruit=(?)";
+    var statement = "SELECT PID FROM Post where fruit=(?)";
     const data = await db.query(statement, [fruitName]);
     return data;
 }
 async function search_data_by_user(author) {
-    var statement = "SELECT * FROM Post where author=(?)";
+    var statement = "SELECT PID FROM Post where author=(?)";
     const data = await db.query(statement, [author]);
     return data;
 }
