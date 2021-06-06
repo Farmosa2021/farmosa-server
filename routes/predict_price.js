@@ -12,9 +12,9 @@ router.get('/:date', async function(req, res, next) {
   }
 });
 
-router.get('/:from_date/:to_date', async function(req, res, next) {
+router.get('/:fruit/:from_date/:to_date', async function(req, res, next) {
   try {
-    res.json(await predict_price.getPredictPrices(req.params.from_date, req.params.to_date));
+    res.json(await predict_price.getPredictPrices(req.params.fruit, req.params.from_date, req.params.to_date));
   } catch (err) {
     console.error(`Error while getting predict prices `, err.message);
     next(err);
