@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const bodyParser = require("body-parser");
 
@@ -22,6 +23,7 @@ const { post } = require('./routes/hello');
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(cors());
 app.use('/hello', hello);
 app.use('/fruits', fruits);
 
@@ -30,7 +32,6 @@ app.use('/predict_price', predict_price);
 app.use('/posts', postRoutes);
 app.use('/posts/:id/comments', commentRoutes);
 app.use('/users', userRoutes);
-
 
 const PORT = 8080;
 const HOST = '0.0.0.0';
