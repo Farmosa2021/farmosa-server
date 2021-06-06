@@ -19,10 +19,14 @@
   },
   "homepage": "https://github.com/Farmosa2021/farmosa-server#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "requests": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10"
   }
 }
