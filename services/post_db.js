@@ -44,34 +44,59 @@ async function insert_data(newData) {
             "INSERT INTO Post (author,title,fruit,content) VALUES (?,?,?,?)",
             [newData.author, newData.title, newData.fruit, newData.content]
         );
-        const response = { result: "success" };
-        return { data, response };
+        const result = "success";
+        return { data, result };
     } catch (err) {
         console.log(err);
         return { result: "error" };
     }
 }
 async function search_data_by_id(PID) {
-    var statement = "SELECT * FROM Post where PID=(?)";
-    const data = await db.query(statement, [PID]);
-    return data;
+    try {
+        var statement = "SELECT * FROM Post where PID=(?)";
+        const data = await db.query(statement, [PID]);
+        const result = "success";
+        return { data, result };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
 }
 async function search_data_by_fruit(fruitName) {
-    var statement = "SELECT PID FROM Post where fruit=(?)";
-    const data = await db.query(statement, [fruitName]);
-    return data;
+    try {
+        var statement = "SELECT PID FROM Post where fruit=(?)";
+        const data = await db.query(statement, [fruitName]);
+        const result = "success";
+        return { data, result };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
 }
 async function search_data_by_user(author) {
-    var statement = "SELECT PID FROM Post where author=(?)";
-    const data = await db.query(statement, [author]);
-    return data;
+    try {
+        var statement = "SELECT PID FROM Post where author=(?)";
+        const data = await db.query(statement, [author]);
+        const result = "success";
+        return { data, result };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
 }
 async function search_data_by_id_and_update(PID, updateData) {
     try {
-        var statement = "UPDATE Post SET author=(?),title=(?),fruit=(?),content=(?) WHERE PID=(?)";
-        const data = await db.query(statement, [updateData.author,updateData.title, updateData.fruit, updateData.content, PID]);
-        const response = { result: "success" };
-        return { data, response };
+        var statement =
+            "UPDATE Post SET author=(?),title=(?),fruit=(?),content=(?) WHERE PID=(?)";
+        const data = await db.query(statement, [
+            updateData.author,
+            updateData.title,
+            updateData.fruit,
+            updateData.content,
+            PID,
+        ]);
+        const result = "success";
+        return { data, result };
     } catch (err) {
         console.log(err);
         return { result: "error" };

@@ -17,10 +17,10 @@ async function search_realtime_by_sub(fruit, market) {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         console.log(err)
@@ -46,10 +46,10 @@ async function search_realtime_by_fullname(fruit, market) {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result =  "success" ;
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         console.log(err)
@@ -66,10 +66,10 @@ async function get_all_markets() {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result =  "success" ;
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         console.log(err)
@@ -103,10 +103,10 @@ async function search_history_by_sub(fruit) {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         console.log(err)
@@ -144,10 +144,10 @@ async function search_history_by_fullname(fruit) {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         console.log(err)
@@ -162,10 +162,10 @@ async function search_fruit() {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         console.log(err)
@@ -180,10 +180,10 @@ async function search_image_by_fruit(fruit) {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         console.log(err)
