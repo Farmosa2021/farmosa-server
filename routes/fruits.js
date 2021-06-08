@@ -1,15 +1,35 @@
-const express = require('express');
-const router = express.Router();
-const fruits = require('../services/fruits');
+var express = require('express');
+const router = express.Router({mergeParams: true});
+const fruit_db = require('../services/fruit_db');
+// *Format
+// ID int NOT NULL AUTO_INCREMENT, \
+// name varchar(20), \
+// image varchar(128), \
 
-/* GET quotes listing. */
-router.get('/', async function(req, res, next) {
-  try {
-    res.json(await fruits.getFruits());
-  } catch (err) {
-    console.error(`Error while getting fruits `, err.message);
-    next(err);
-  }
+//* SHOW all posts
+router.get("/", async function (req, res, next) {
+    res.json(await fruit_db.get_data())
 });
 
-module.exports = router;
+//* SHOW post
+router.get("/images/:fruitName", async function (req, res, next) {
+    res.json(await fruit_db.search_data_by_fruit(req.params.fruitName))
+});
+
+router.get("/realtime/sub/:fruitName", async function (req, res, next) {
+    res.json(await fruit_db.search_realtime_by_fruit_sub(req.params.fruitName))
+});
+
+router.get("/realtime/:fruitName", async function (req, res, next) {
+  res.json(await fruit_db.search_realtime_by_fruit(req.params.fruitName))
+});
+
+router.get("/history/sub/:fruitName", async function (req, res, next) {
+  res.json(await fruit_db.search_history_by_fruit_sub(req.params.fruitName))
+});
+
+router.get("/history/:fruitName", async function (req, res, next) {
+res.json(await fruit_db.search_history_by_fruit(req.params.fruitName))
+});
+
+ module.exports = router;
