@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require("body-parser");
 
 const hello = require('./routes/hello');
-const fruits = require('./routes/fruits');
+const fruitRoutes = require('./routes/fruits');
 const fruit_price = require('./routes/fruit_price');
 const predict_price = require('./routes/predict_price');
 const postRoutes = require('./routes/posts');
@@ -20,6 +20,7 @@ const create_fruit_table = require("./services/create_fruit_table");
 const post_db = require('./services/post_db');
 const comment_db = require('./services/comment_db');
 const user_db = require('./services/user_db');
+const fruit_db = require('./services/fruit_db');
 const { post } = require('./routes/hello');
 
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,7 +29,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 app.use('/hello', hello);
-app.use('/fruits', fruits);
+app.use('/fruits', fruitRoutes);
 
 app.use('/fruit_price', fruit_price);
 app.use('/predict_price', predict_price);
