@@ -77,6 +77,35 @@ async function search_data_by_id(UID) {
 
 }
 
+async function insert_favor(newData) {
+    try {
+        const data = await db.query(
+            "INSERT INTO Favor (UID, fruit) VALUES (?,?)",
+            [newData.username, newData.password]
+        );
+        return { result: "success" };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
+}
+
+async function search_favor_by_id(UID) {
+    var statement = "SELECT fruit FROM Favor where UID=(?)";
+    try{
+        const data = await db.query(statement, [UID]);
+        const response = { result: "success" };
+        return {
+            data,
+            response,
+        };
+    }catch(err){
+        return { result: "error" };
+    }
+}
+
+
+
 async function auth(authUser) {
     var statement = "SELECT * FROM User where username=(?) AND password=(?)";
     try{
@@ -100,5 +129,7 @@ module.exports = {
     get_data,
     insert_data,
     search_data_by_id,
+    insert_favor,
+    search_favor_by_id,
     auth
 };
