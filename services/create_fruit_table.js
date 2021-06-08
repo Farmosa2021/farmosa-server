@@ -11,7 +11,7 @@ async function create_fruit_table() {
 	await db.query(createStatament);
 	
     var fs  = require("fs");
-    var array = fs.readFileSync('./data/we.txt').toString().split('\r\n');
+    var array = fs.readFileSync('./data/we.txt').toString().split('\n');
     for(var i = 0; i < 23; i++){
         var name = array[i],
             image = array[i+24];

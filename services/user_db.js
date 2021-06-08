@@ -20,6 +20,22 @@ async function create_table() {
     var s2 = 'insert into User (username, password)  values ("Chris", "bpploabc");';
     await db.query(s2);
     console.log("Add 2 Data to User..");
+
+
+    await db.query("DROP TABLE IF EXISTS Favor");
+    var createStatement ="CREATE TABLE Favor ( \
+        UID INT NOT NULL, \
+        fruit VARCHAR(20) NOT NULL, \
+        FOREIGN KEY(UID) REFERENCES User(UID) ON DELETE CASCADE \
+        );";
+    await db.query(createStatement);
+    console.log("Create Favor table successfully.");
+    var s1 = 'insert into Favor (UID, fruit) values (1, "banana");'
+    await db.query(s1);
+    var s2 = 'insert into Favor (UID, fruit) values (2, "apple");'
+    await db.query(s2);
+
+    console.log("Add 2 Data to Favor..");
 }
 // async function add_some_data() {
 

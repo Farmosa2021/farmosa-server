@@ -15,10 +15,7 @@ const userRoutes = require('./routes/users');
 
 const predict_table = require('./services/update_predict_table');
 const price_query_table = require('./services/update_price_query_table');
-
-const build_fruit_db = require('./services/build_fruit_db');
 const create_fruit_table = require("./services/create_fruit_table");
-const predict_price = require('./routes/predict_price');
 
 const post_db = require('./services/post_db');
 const comment_db = require('./services/comment_db');

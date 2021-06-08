@@ -10,7 +10,7 @@ async function create_table() {
         PID INT NOT NULL AUTO_INCREMENT, \
         author VARCHAR(20) NOT NULL, \
         title VARCHAR(40) NOT NULL, \
-        fruit VARCHAR(10) NOT NULL, \
+        fruit VARCHAR(20) NOT NULL, \
         content VARCHAR(255) NOT NULL, \
         PRIMARY KEY(PID) \
         );";
