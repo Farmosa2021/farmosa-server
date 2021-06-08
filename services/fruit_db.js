@@ -1,7 +1,17 @@
 const db = require("./db");
 
-async function search_realtime_by_sub(fruit) {
-    var statement = "SELECT * FROM price_query where item LIKE '%" + fruit + "%'";
+async function search_realtime_by_sub(fruit, market) {
+    var statement = "SELECT * FROM price_query where item LIKE '%" + fruit + "%' and market = " + market;
+    if (fruit.length == 0 && market.length == 0) {
+        statement = "SELECT * FROM price_query";
+    }
+    else if (fruit.length !=0 && market.length == 0) {
+        statement = "SELECT * FROM price_query WHERE item LIKE '%" + fruit + "%'";
+    }
+
+    else if (fruit.length == 0 && market.length != 0) {
+        statement = "SELECT * FROM price_query WHERE market = " + market;
+    }
     try{
         const data = await db.query(statement);
         if(data.length==0){
@@ -18,10 +28,21 @@ async function search_realtime_by_sub(fruit) {
     }
 }
 
-async function search_realtime_by_fullname(fruit) {
-    var statement = "SELECT * FROM price_query where item = (?)";
+async function search_realtime_by_fullname(fruit, market) {
+
+    var statement = "SELECT * FROM price_query where item = " + fruit + " and market = " + market;
+    if (fruit.length == 0 && market.length == 0) {
+        statement = "SELECT * FROM price_query";
+    }
+    else if (fruit.length !=0 && market.length == 0) {
+        statement = "SELECT * FROM price_query WHERE item = " + fruit + "%'";
+    }
+
+    else if (fruit.length == 0 && market.length != 0) {
+        statement = "SELECT * FROM price_query WHERE market = " + market;
+    }
     try{
-        const data = await db.query(statement, fruit);
+        const data = await db.query(statement);
         if(data.length==0){
             return { result: "error" };
         }
@@ -64,7 +85,7 @@ async function search_history_by_sub(fruit) {
 async function search_history_by_fullname(fruit) {
     var statement = "SELECT DATE, " + fruit + " FROM predict_table";
     try{
-        const data = await db.query(statement, fruit);
+        const data = await db.query(statement, [fruit]);
         if(data.length==0){
             return { result: "error" };
         }
@@ -82,7 +103,7 @@ async function search_history_by_fullname(fruit) {
 async function search_fruit() {
     var statement = "SELECT * FROM fruit";
     try{
-        const data = await db.query(statement, fruit);
+        const data = await db.query(statement, [fruit]);
         if(data.length==0){
             return { result: "error" };
         }
@@ -100,7 +121,7 @@ async function search_fruit() {
 async function search_image_by_fruit(fruit) {
     var statement = "SELECT image FROM fruit WHERE name = (?)";
     try{
-        const data = await db.query(statement, fruit);
+        const data = await db.query(statement, [fruit]);
         if(data.length==0){
             return { result: "error" };
         }
