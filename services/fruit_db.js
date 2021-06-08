@@ -99,10 +99,10 @@ async function search_history_by_sub(fruit) {
     // console.log("'"+columns+"'")
     try{
         statement1 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-11-28' AND '2021-04-28'"
-        statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-01-28' AND '2021-04-28'"
-        statement3 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-03-28' AND '2021-04-28'"
-        const data_6 = await db.query(statement1);
-        const data_3 = await db.query(statement1);
+        statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-04-28' AND '2021-04-28'"
+        statement3 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2019-04-28' AND '2021-04-28'"
+        const data_6 = await db.query(statement3);
+        const data_3 = await db.query(statement2);
         const data_1 = await db.query(statement1);
         if(data_6.length==0 || data_3.length==0 ||data_1.length==0 ){
             return { result: "error" };
@@ -144,10 +144,10 @@ async function search_history_by_fullname(fruit) {
     // console.log("'"+columns+"'")
     try{
         statement1 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-11-28' AND '2021-04-28'"
-        statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-01-28' AND '2021-04-28'"
-        statement3 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-03-28' AND '2021-04-28'"
-        const data_6 = await db.query(statement1);
-        const data_3 = await db.query(statement1);
+        statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-04-28' AND '2021-04-28'"
+        statement3 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2019-04-28' AND '2021-04-28'"
+        const data_6 = await db.query(statement3);
+        const data_3 = await db.query(statement2);
         const data_1 = await db.query(statement1);
         if(data_6.length==0 || data_3.length==0 ||data_1.length==0 ){
             return { result: "error" };
