@@ -10,8 +10,8 @@ async function getPredictPrice(date){
   }
 }
 
-async function getPredictPrices(from_date, to_date){
-  const data = await db.query('SELECT * FROM predict_table WHERE 時間>=\'' + from_date + '\' AND 時間<= \'' + to_date + '\' ORDER BY 時間 ASC');
+async function getPredictPrices(fruit, from_date, to_date){
+  const data = await db.query('SELECT ' + fruit + ' FROM predict_table WHERE 時間>=\'' + from_date + '\' AND 時間<= \'' + to_date + '\' ORDER BY 時間 ASC');
   const meta = {'length': data.length};
 
   return {
