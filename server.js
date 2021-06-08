@@ -16,6 +16,7 @@ const userRoutes = require('./routes/users');
 const predict_table = require('./services/update_predict_table');
 const price_query_table = require('./services/update_price_query_table');
 const create_fruit_table = require("./services/create_fruit_table");
+const build_fruit_db = require("./services/build_fruit_db");
 
 const post_db = require('./services/post_db');
 const comment_db = require('./services/comment_db');
@@ -47,6 +48,7 @@ app.listen(PORT, HOST, async function(){
     await post_db.create_table();
     await comment_db.create_table();
     await user_db.create_table();
+    // await build_fruit_db.recipeCrawler();
 
 });
 console.log(`Running on http://${HOST}:${PORT}`);
