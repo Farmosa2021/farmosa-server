@@ -42,7 +42,7 @@ async function search_realtime_by_fullname(fruit, market) {
         statement = "SELECT * FROM price_query WHERE market = " + market;
     }
     try{
-        const data = await db.query(statement);
+        const data = await db.query(statement, [fruit]);
         if(data.length==0){
             return { result: "error" };
         }
@@ -103,7 +103,7 @@ async function search_history_by_fullname(fruit) {
 async function search_fruit() {
     var statement = "SELECT * FROM fruit";
     try{
-        const data = await db.query(statement, [fruit]);
+        const data = await db.query(statement);
         if(data.length==0){
             return { result: "error" };
         }
