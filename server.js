@@ -24,9 +24,9 @@ const PORT = 8080;
 const HOST = '0.0.0.0';
 
 app.listen(PORT, HOST, function(){
-    // predict_table.update();
-    // price_query_table.update();
-    // build_fruit_db.imageCrawler();
+    predict_table.update();
+    price_query_table.update();
+    build_fruit_db.imageCrawler();
     create_fruit_table.create_fruit_table();
 });
 console.log(`Running on http://${HOST}:${PORT}`);
