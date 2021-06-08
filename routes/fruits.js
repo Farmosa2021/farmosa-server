@@ -20,7 +20,7 @@ router.get("/realtime/sub", async function (req, res, next) {
     res.json(await fruit_db.search_realtime_by_sub(req.body.fruit, req.body.market))
 });
 router.get("/realtime", async function (req, res, next) {
-  res.json(await fruit_db.search_realtime_by_fullname(req.body.fruit))
+  res.json(await fruit_db.search_realtime_by_fullname(req.body.fruit, req.body.market))
 });
 
 router.get("/history/sub", async function (req, res, next) {
@@ -30,5 +30,7 @@ router.get("/history/sub", async function (req, res, next) {
 router.get("/history", async function (req, res, next) {
 res.json(await fruit_db.search_history_by_fullname(req.body.fruit))
 });
-
- module.exports = router;
+router.get("/realtime/markets", async function (req, res, next) {
+  res.json(await fruit_db.get_all_markets())
+  });
+module.exports = router;
