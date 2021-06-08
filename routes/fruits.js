@@ -8,28 +8,27 @@ const fruit_db = require('../services/fruit_db');
 
 //* SHOW all posts
 router.get("/", async function (req, res, next) {
-    res.json(await fruit_db.get_data())
+    res.json(await fruit_db.search_fruit())
 });
 
 //* SHOW post
-router.get("/images/:fruitName", async function (req, res, next) {
-    res.json(await fruit_db.search_data_by_fruit(req.params.fruitName))
+router.get("/images", async function (req, res, next) {
+    res.json(await fruit_db.search_image_by_fruit(req.body.fruit))
 });
 
-router.get("/realtime/sub/:fruitName", async function (req, res, next) {
-    res.json(await fruit_db.search_realtime_by_fruit_sub(req.params.fruitName))
+router.get("/realtime/sub", async function (req, res, next) {
+    res.json(await fruit_db.search_realtime_by_sub(req.body.fruit, req.body.market))
+});
+router.get("/realtime", async function (req, res, next) {
+  res.json(await fruit_db.search_realtime_by_fullname(req.body.fruit))
 });
 
-router.get("/realtime/:fruitName", async function (req, res, next) {
-  res.json(await fruit_db.search_realtime_by_fruit(req.params.fruitName))
+router.get("/history/sub", async function (req, res, next) {
+  res.json(await fruit_db.search_history_by_sub(req.body.fruit))
 });
 
-router.get("/history/sub/:fruitName", async function (req, res, next) {
-  res.json(await fruit_db.search_history_by_fruit_sub(req.params.fruitName))
-});
-
-router.get("/history/:fruitName", async function (req, res, next) {
-res.json(await fruit_db.search_history_by_fruit(req.params.fruitName))
+router.get("/history", async function (req, res, next) {
+res.json(await fruit_db.search_history_by_fullname(req.body.fruit))
 });
 
  module.exports = router;

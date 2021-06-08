@@ -66,6 +66,9 @@ async function search_data_by_id(UID) {
     var statement = "SELECT * FROM User where UID=(?)";
     try{
         const data = await db.query(statement, [UID]);
+        if(data.length==0){
+            return { result: "error" };
+        }
         const response = { result: "success" };
         return {
             data,
@@ -77,11 +80,11 @@ async function search_data_by_id(UID) {
 
 }
 
-async function insert_favor(newData) {
+async function insert_favor(newData, UID) {
     try {
         const data = await db.query(
             "INSERT INTO Favor (UID, fruit) VALUES (?,?)",
-            [newData.username, newData.password]
+            [UID, newData.fruit]
         );
         return { result: "success" };
     } catch (err) {
@@ -94,6 +97,9 @@ async function search_favor_by_id(UID) {
     var statement = "SELECT fruit FROM Favor where UID=(?)";
     try{
         const data = await db.query(statement, [UID]);
+        if(data.length==0){
+            return { result: "error" };
+        }
         const response = { result: "success" };
         return {
             data,

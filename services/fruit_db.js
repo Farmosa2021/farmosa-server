@@ -21,7 +21,7 @@ async function search_realtime_by_sub(fruit) {
 async function search_realtime_by_fullname(fruit) {
     var statement = "SELECT * FROM price_query where item = (?)";
     try{
-        const data = await db.query(statement, fruit);
+        const data = await db.query(statement, [fruit]);
         if(data.length==0){
             return { result: "error" };
         }
@@ -35,7 +35,23 @@ async function search_realtime_by_fullname(fruit) {
         return { result: "error" };
     }
 }
-
+async function search_realtime() {
+    var statement = "SELECT * FROM price_query";
+    try{
+        const data = await db.query(statement);
+        if(data.length==0){
+            return { result: "error" };
+        }
+        const response = { result: "success" };
+        return {
+            data,
+            response,
+        };
+    }catch(err){
+        console.log(err)
+        return { result: "error" };
+    }
+}
 async function search_history_by_sub(fruit) {
     var statement = "SHOW COLUMNS FROM predict_table LIKE '%" + fruit + "%'";
     name_list = await db.query(statement);
@@ -64,7 +80,7 @@ async function search_history_by_sub(fruit) {
 async function search_history_by_fullname(fruit) {
     var statement = "SELECT DATE, " + fruit + " FROM predict_table";
     try{
-        const data = await db.query(statement, fruit);
+        const data = await db.query(statement, [fruit]);
         if(data.length==0){
             return { result: "error" };
         }
@@ -82,7 +98,7 @@ async function search_history_by_fullname(fruit) {
 async function search_fruit() {
     var statement = "SELECT * FROM fruit";
     try{
-        const data = await db.query(statement, fruit);
+        const data = await db.query(statement);
         if(data.length==0){
             return { result: "error" };
         }
@@ -100,7 +116,7 @@ async function search_fruit() {
 async function search_image_by_fruit(fruit) {
     var statement = "SELECT image FROM fruit WHERE name = (?)";
     try{
-        const data = await db.query(statement, fruit);
+        const data = await db.query(statement, [fruit]);
         if(data.length==0){
             return { result: "error" };
         }

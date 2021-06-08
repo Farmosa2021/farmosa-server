@@ -21,7 +21,7 @@ router.get("/:id/favor", async function (req, res, next) {
 
 router.post("/:id/favor", async function (req, res, next) {
     // find a campground and show the info
-    res.json(await user_db.insert_favor(req.body))
+    res.json(await user_db.insert_favor(req.body, req.params.id))
 });
 router.get("/:id", async function (req, res, next) {
     // find a campground and show the info
