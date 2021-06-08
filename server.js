@@ -15,6 +15,11 @@ const userRoutes = require('./routes/users');
 
 const predict_table = require('./services/update_predict_table');
 const price_query_table = require('./services/update_price_query_table');
+
+const build_fruit_db = require('./services/build_fruit_db');
+const create_fruit_table = require("./services/create_fruit_table");
+const predict_price = require('./routes/predict_price');
+
 const post_db = require('./services/post_db');
 const comment_db = require('./services/comment_db');
 const user_db = require('./services/user_db');
@@ -22,6 +27,7 @@ const { post } = require('./routes/hello');
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.use(cors());
 app.use('/hello', hello);
@@ -37,10 +43,12 @@ const PORT = 8080;
 const HOST = '0.0.0.0';
 
 app.listen(PORT, HOST, async function(){
+    await create_fruit_table.create_fruit_table();
     await predict_table.update();
     await price_query_table.update();
     await post_db.create_table();
     await comment_db.create_table();
     await user_db.create_table();
+
 });
 console.log(`Running on http://${HOST}:${PORT}`);
