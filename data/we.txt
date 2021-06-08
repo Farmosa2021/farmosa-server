@@ -1,4 +1,3 @@
-時間
 洋蔥
 青香蕉
 鳳梨
@@ -23,7 +22,6 @@
 茂谷柑
 西瓜
 -----------
-https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzSsXknZhKyOsDwA2PYV4ptBVPA1vArlWOpNnuaX9_XOHeX-fV_sMMW-WTFw&s
 https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKxI1LkfNt0lkPrHJBRLwNuIImDWWAnWBA8NpLE7V75Mfe_k6Uhqf9FgBocA&s
 https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTdKB7QjuMQ14MaCmyM0R8_9DrjTOBV4XcpX1HeOxrpVmeMKTp4oScj4J8SQ&s
 https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj0P5GgtbQF_5fBvKyg9eCxB1PX-9zV0yaYL6S_k_UOQ-woQuuH1fOrnVllH0&s

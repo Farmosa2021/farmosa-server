@@ -10,7 +10,7 @@ const fruit_price = require('./routes/fruit_price');
 const predict_table = require('./services/update_predict_table');
 const price_query_table = require('./services/update_price_query_table');
 const build_fruit_db = require('./services/build_fruit_db');
-
+const create_fruit_table = require("./services/create_fruit_table");
 const predict_price = require('./routes/predict_price');
 
 app.use('/hello', hello);
@@ -24,8 +24,9 @@ const PORT = 8080;
 const HOST = '0.0.0.0';
 
 app.listen(PORT, HOST, function(){
-    predict_table.update();
-    price_query_table.update();
-    build_fruit_db.imageCrawler();
+    // predict_table.update();
+    // price_query_table.update();
+    // build_fruit_db.imageCrawler();
+    create_fruit_table.create_fruit_table();
 });
 console.log(`Running on http://${HOST}:${PORT}`);
