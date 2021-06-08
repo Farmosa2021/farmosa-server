@@ -44,10 +44,11 @@ async function get_data() {
     var statement = "SELECT * FROM User;";
     try {
         const data = await db.query(statement);
-        return data;
+        const result = "success"
+        return {data, result};
     } catch (err) {
         console.log(err);
-        return err;
+        return {result: "error"};
     }
 }
 async function insert_data(newData) {
@@ -69,10 +70,10 @@ async function search_data_by_id(UID) {
         if(data.length==0){
             return { result: "error" };
         }
-        const re = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         return { result: "error" };
