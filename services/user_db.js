@@ -111,6 +111,19 @@ async function search_favor_by_id(UID) {
     }
 }
 
+async function delete_favor(UID, fruit) {
+    var statement = "DELETE FROM Favor where UID=(?) AND fruit=(?)";
+    try{
+        const data = await db.query(statement, [UID, fruit]);
+        if(data.length==0){
+            return { result: "error" };
+        }
+        return { result: "success" };
+    }catch(err){
+        return { result: "error" };
+    }
+}
+
 
 
 async function auth(authUser) {
@@ -138,5 +151,6 @@ module.exports = {
     search_data_by_id,
     insert_favor,
     search_favor_by_id,
-    auth
+    auth,
+    delete_favor
 };

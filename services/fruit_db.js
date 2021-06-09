@@ -84,7 +84,6 @@ async function search_history_by_sub(fruit) {
     console.log(statement)
 
     name_list = await db.query(statement);
-    console.log(name_list)
     var columns = "時間";
     for (var i = 0; i < name_list.length; i++){
         console.log("'"+name_list[i].Field+"'")
@@ -94,9 +93,6 @@ async function search_history_by_sub(fruit) {
         }
         columns += (", " +name_list[i].Field)
     }
-    console.log("'"+columns+"'")
-    // columns = columns.slice(0, -2)  
-    // console.log("'"+columns+"'")
     try{
         statement1 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-01-28' AND '2021-04-28'"
         statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-11-28' AND '2021-04-28'"
@@ -199,6 +195,36 @@ async function search_image_by_fruit(fruit) {
     }
 }
 
+async function create_season_table(fruit) {
+    var statement = "SHOW COLUMNS FROM predict_table";
+
+    name_list = await db.query(statement);
+    var columns = "時間";
+    for (var i = 0; i < name_list.length; i++){
+        console.log("'"+name_list[i].Field+"'")
+        
+        if(name_list[i].Field=='時間'){
+            continue
+        }
+        columns += (", " +name_list[i].Field)
+    }
+    // TODO
+    try{
+        // statement = "SELECT " + columns + " FROM predict_table"
+        // const data = await db.query(statement);
+        // if(data.length==0){
+        //     return { result: "error" };
+        // }
+        const result = "success";
+        return {
+            data,
+            result,
+        };
+    }catch(err){
+        console.log(err)
+        return { result: "error" };
+    }
+}
 module.exports = {
     // add_some_data,
     search_realtime_by_sub,
