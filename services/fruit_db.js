@@ -135,7 +135,7 @@ async function search_history_by_fullname(fruit) {
         }
         columns += (", " +name_list[i].Field)
     }
-    console.log("'"+columns+"'")
+    // console.log("'"+columns+"'")
     // columns = columns.slice(0, -2)  
     // console.log("'"+columns+"'")
     try{
@@ -145,12 +145,17 @@ async function search_history_by_fullname(fruit) {
         const data_6 = await db.query(statement3);
         const data_3 = await db.query(statement2);
         const data_1 = await db.query(statement1);
-        if(data_6.length==0 || data_3.length==0 ||data_1.length==0 ){
+
+        season = await get_fruit_season(fruit)
+        statement4 = "SELECT " + columns + " FROM predict_table WHERE 時間 between (?) AND (?)"
+        const data_season = await db.query(statement4, [season.data[0].season_start, season.data[0].season_end]);
+
+        if(data_6.length==0 || data_3.length==0 ||data_1.length==0 || data_season.length==0){
             return { result: "error" };
         }
         const result = "success";
         return {
-            data: {data_6, data_3, data_1},
+            data: {data_6, data_3, data_1, data_season},
             result,
         };
     }catch(err){
