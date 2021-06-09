@@ -17,7 +17,7 @@ async function create_table() {
     await db.query(createStatement);
     console.log("Create Post table successfully.");
     var s1 =
-        'insert into Post (author,title,fruit,content) values ("Jacky", "DB cool!!!", "鳳梨", "鳳梨是原產於南美洲的熱帶水果，為禾本目鳳梨科鳳梨屬植物，因多汁酸甜受到喜愛，有解暑之效，是鳳梨科中最具經濟價值的種類。");';
+        'insert into Post (author,title,fruit,content) values ("Chris", "DB cool!!!", "鳳梨", "鳳梨是原產於南美洲的熱帶水果，為禾本目鳳梨科鳳梨屬植物，因多汁酸甜受到喜愛，有解暑之效，是鳳梨科中最具經濟價值的種類。");';
     await db.query(s1);
     var s2 =
         'insert into Post (author,title,fruit,content) values ("Chris", "Believe it!!!", "洋蔥", "洋蔥，又稱蔥頭、洋蒜，新疆人稱皮牙孜、是一種常見的石蒜科蔥屬植物");';
@@ -26,10 +26,10 @@ async function create_table() {
     'insert into Post (author,title,fruit,content) values ("Chris", "bang!!!", "桶柑", "桶柑，又稱為年柑，是柑橘的一種，屬於芸香科植物，據推測是椪柑與臍橙之天然雜交種。。早年由於農家將桶柑儲藏於木桶中作運輸，故稱之為桶柑。");';
     await db.query(s3);
     var s4 =
-    'insert into Post (author,title,fruit,content) values ("沙威瑪", "Dmonn!!!", "蒜頭", "沙威瑪是一道中東黎凡特地區的肉類料理，沙威瑪含有羊肉、雞肉、火雞肉、牛肉，置於烤肉叉上燒烤");';
+    'insert into Post (author,title,fruit,content) values ("Chris", "Dmonn!!!", "蒜頭", "沙威瑪是一道中東黎凡特地區的肉類料理，沙威瑪含有羊肉、雞肉、火雞肉、牛肉，置於烤肉叉上燒烤");';
     await db.query(s4);
     var s5 =
-    'insert into Post (author,title,fruit,content) values ("Cucaracha", "sususususu!!!", "柳橙", "橙是芸香科柑橘屬的物種，亦稱為柳橙、黃果、金環。橙是柑果，也是人類種植了很久的混合品種");';
+    'insert into Post (author,title,fruit,content) values ("Chris", "sususususu!!!", "柳橙", "橙是芸香科柑橘屬的物種，亦稱為柳橙、黃果、金環。橙是柑果，也是人類種植了很久的混合品種");';
     await db.query(s5);
     console.log("Add 5 Data..");
 }
