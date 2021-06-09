@@ -30,9 +30,9 @@ async function create_table() {
         );";
     await db.query(createStatement);
     console.log("Create Favor table successfully.");
-    var s1 = 'insert into Favor (UID, fruit) values (1, "banana");'
+    var s1 = 'insert into Favor (UID, fruit) values (1, "香蕉");'
     await db.query(s1);
-    var s2 = 'insert into Favor (UID, fruit) values (2, "apple");'
+    var s2 = 'insert into Favor (UID, fruit) values (2, "西瓜");'
     await db.query(s2);
 
     console.log("Add 2 Data to Favor..");
