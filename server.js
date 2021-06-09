@@ -43,6 +43,7 @@ const HOST = '0.0.0.0';
 
 app.listen(PORT, HOST, async function(){
     await create_fruit_table.create_fruit_table();
+    await create_fruit_table.create_season_table();
     await predict_table.update();
     await price_query_table.update();
     await post_db.create_table();

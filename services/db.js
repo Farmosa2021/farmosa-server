@@ -8,9 +8,9 @@ async function query(sql, params) {
   return rows;
 }
 
-async function load_query(localFileToImport) {
+async function load_query(localFileToImport, table_name) {
   await pool.query({
-    sql: `LOAD DATA LOCAL INFILE "${localFileToImport}"into table predict_table  \
+    sql: `LOAD DATA LOCAL INFILE "${localFileToImport}" into table ${table_name}  \
         fields terminated by ',' \
         enclosed by '\"' \
         lines terminated by '\\n' \

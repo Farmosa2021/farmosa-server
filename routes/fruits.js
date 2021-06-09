@@ -26,11 +26,15 @@ router.post("/realtime", async function (req, res, next) {
 router.post("/history/sub", async function (req, res, next) {
   res.json(await fruit_db.search_history_by_sub(req.body.fruit))
 });
-
+router.post("/history/season", async function (req, res, next) {
+  res.json(await fruit_db.get_fruit_season(req.body.fruit))
+  });
 router.post("/history", async function (req, res, next) {
 res.json(await fruit_db.search_history_by_fullname(req.body.fruit))
 });
 router.post("/realtime/markets", async function (req, res, next) {
   res.json(await fruit_db.get_all_markets())
   });
+
+
 module.exports = router;

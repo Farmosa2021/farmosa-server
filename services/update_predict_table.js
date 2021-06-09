@@ -19,7 +19,7 @@ async function update() {
         新興梨 FLOAT, \
         檸檬 FLOAT, \
         芒果 FLOAT, \
-        豐水梨 FLOAT, \
+        水梨 FLOAT, \
         番石榴 FLOAT, \
         文旦 FLOAT, \
         甜柿 FLOAT, \
@@ -42,7 +42,7 @@ async function update() {
     // ignore 1 lines;";
     
     // await db.query(loadStatement);
-    await db.load_query('./data/history_price.csv');
+    await db.load_query('./data/history_price.csv', 'predict_table');
 
     console.log("Update predict table successfully.");
 }
