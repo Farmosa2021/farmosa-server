@@ -7,7 +7,7 @@ async function update() {
     var createStatament = "CREATE TABLE predict_table ( \
         時間 DATE not null, \
         洋蔥 FLOAT, \
-        青香蕉 FLOAT, \
+        香蕉 FLOAT, \
         鳳梨 FLOAT, \
         蒜頭 FLOAT, \
         青梅 FLOAT, \

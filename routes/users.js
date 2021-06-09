@@ -20,11 +20,12 @@ router.get("/:id/favor", async function (req, res, next) {
 });
 
 router.post("/:id/favor", async function (req, res, next) {
-    // find a campground and show the info
     res.json(await user_db.insert_favor(req.body, req.params.id))
 });
+router.delete("/:id/favor", async function (req, res, next) {
+    res.json(await user_db.delete_favor(req.params.id, req.body.fruit))
+});
 router.get("/:id", async function (req, res, next) {
-    // find a campground and show the info
     res.json(await user_db.search_data_by_id(req.params.id))
 });
 

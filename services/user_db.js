@@ -30,9 +30,9 @@ async function create_table() {
         );";
     await db.query(createStatement);
     console.log("Create Favor table successfully.");
-    var s1 = 'insert into Favor (UID, fruit) values (1, "banana");'
+    var s1 = 'insert into Favor (UID, fruit) values (1, "香蕉");'
     await db.query(s1);
-    var s2 = 'insert into Favor (UID, fruit) values (2, "apple");'
+    var s2 = 'insert into Favor (UID, fruit) values (2, "西瓜");'
     await db.query(s2);
 
     console.log("Add 2 Data to Favor..");
@@ -44,10 +44,11 @@ async function get_data() {
     var statement = "SELECT * FROM User;";
     try {
         const data = await db.query(statement);
-        return data;
+        const result = "success"
+        return {data, result};
     } catch (err) {
         console.log(err);
-        return err;
+        return {result: "error"};
     }
 }
 async function insert_data(newData) {
@@ -69,10 +70,10 @@ async function search_data_by_id(UID) {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         return { result: "error" };
@@ -100,11 +101,24 @@ async function search_favor_by_id(UID) {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
+    }catch(err){
+        return { result: "error" };
+    }
+}
+
+async function delete_favor(UID, fruit) {
+    var statement = "DELETE FROM Favor where UID=(?) AND fruit=(?)";
+    try{
+        const data = await db.query(statement, [UID, fruit]);
+        if(data.length==0){
+            return { result: "error" };
+        }
+        return { result: "success" };
     }catch(err){
         return { result: "error" };
     }
@@ -119,10 +133,10 @@ async function auth(authUser) {
         if(data.length==0){
             return { result: "error" };
         }
-        const response = { result: "success" };
+        const result = "success";
         return {
             data,
-            response,
+            result,
         };
     }catch(err){
         console.log(err)
@@ -137,5 +151,6 @@ module.exports = {
     search_data_by_id,
     insert_favor,
     search_favor_by_id,
-    auth
+    auth,
+    delete_favor
 };

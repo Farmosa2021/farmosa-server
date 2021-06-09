@@ -1,9 +1,9 @@
 const db = require("./db");
 
 async function create_table() {
-
     await db.query("DROP TABLE IF EXISTS Comment");
-    var createStatement ="CREATE TABLE Comment ( \
+    var createStatement =
+        "CREATE TABLE Comment ( \
         CID INT NOT NULL AUTO_INCREMENT, \
         PID INT NOT NULL, \
         author VARCHAR(20) NOT NULL, \
@@ -14,11 +14,14 @@ async function create_table() {
         );";
     await db.query(createStatement);
     console.log("Create Comment table successfully.");
-    var s1 = 'insert into Comment (author,content,PID) values ("Kuku", "Fxck alcohol!!", 1);'
+    var s1 =
+        'insert into Comment (author,content,PID) values ("Kuku", "Fxck alcohol!!", 1);';
     await db.query(s1);
-    var s2 = 'insert into Comment (author,content,PID) values ("Chris Paul", "Gang la!!!", 2);'
+    var s2 =
+        'insert into Comment (author,content,PID) values ("Chris Paul", "Gang la!!!", 2);';
     await db.query(s2);
-    var s3 = 'insert into Comment (author,content,PID) values ("Masa", "Hakunamatata!", 2);'
+    var s3 =
+        'insert into Comment (author,content,PID) values ("Masa", "Hakunamatata!", 2);';
     await db.query(s3);
     console.log("Add 3 Data..");
 }
@@ -27,13 +30,13 @@ async function create_table() {
 // }
 async function get_data() {
     var statement = "SELECT * FROM Comment;";
-    try{
+    try {
         const data = await db.query(statement);
         console.log(data);
         return data;
-    }catch(err){
+    } catch (err) {
         console.log(err);
-        return err
+        return err;
     }
 }
 async function insert_data(newData, PID) {
@@ -42,24 +45,36 @@ async function insert_data(newData, PID) {
             "INSERT INTO Comment (PID,author,content) VALUES (?,?,?)",
             [PID, newData.author, newData.content]
         );
-        const response = { result: "success" };
-        return { data, response };
+        const result = "success";
+        return { data, result };
     } catch (err) {
         console.log(err);
         return { result: "error" };
     }
 }
 async function search_data_by_id(PID) {
-    var statement = "SELECT * FROM Comment where PID=(?)";
-    const data = await db.query(statement, [PID]);
-    return data;
+    try {
+        var statement = "SELECT * FROM Comment where PID=(?)";
+        const data = await db.query(statement, [PID]);
+        const result = "success";
+        return { data, result };
+    } catch (err) {
+        console.log(err);
+        return { result: "error" };
+    }
 }
 async function search_data_by_id_and_update(PID, CID, updateData) {
     try {
-        var statement = "UPDATE Comment SET author=(?),content=(?) WHERE PID=(?) AND CID=(?)";
-        const data = await db.query(statement, [updateData.author, updateData.content, PID, CID]);
-        const response = { result: "success" };
-        return { data, response };
+        var statement =
+            "UPDATE Comment SET author=(?),content=(?) WHERE PID=(?) AND CID=(?)";
+        const data = await db.query(statement, [
+            updateData.author,
+            updateData.content,
+            PID,
+            CID,
+        ]);
+        const result = "success";
+        return { data, result };
     } catch (err) {
         console.log(err);
         return { result: "error" };
@@ -71,5 +86,5 @@ module.exports = {
     get_data,
     insert_data,
     search_data_by_id,
-    search_data_by_id_and_update
+    search_data_by_id_and_update,
 };
