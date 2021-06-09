@@ -4,6 +4,7 @@ const db = require('./db');
 
 async function update(){
     // Query to create table "sample"
+    await db.query("DROP TABLE IF EXISTS price_query");
     var createStatament = "CREATE TABLE IF NOT EXISTS price_query( \
         date DATE not null, \
         item VARCHAR(30) not null, \
