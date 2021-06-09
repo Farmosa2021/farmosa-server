@@ -28,6 +28,8 @@ async function create_fruit_table() {
         var item = [name, image];    
         await db.query(insertStatement, item);
     } 
+
+    await db.load_query('./data/fruit_season.csv');
     // var check = "SELECT * FROM fruit;"
     // const res = await db.query(check);
     // console.log(res)  

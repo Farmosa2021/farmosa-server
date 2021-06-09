@@ -195,27 +195,15 @@ async function search_image_by_fruit(fruit) {
     }
 }
 
-async function create_season_table(fruit) {
-    var statement = "SHOW COLUMNS FROM predict_table";
+async function get_fruit_season(fruit) {
+    var statement = "SELECT * FROM fruit_season where fruit = (?)";
 
-    name_list = await db.query(statement);
-    var columns = "時間";
-    for (var i = 0; i < name_list.length; i++){
-        console.log("'"+name_list[i].Field+"'")
-        
-        if(name_list[i].Field=='時間'){
-            continue
-        }
-        columns += (", " +name_list[i].Field)
-    }
-    // TODO
     try{
-        // statement = "SELECT " + columns + " FROM predict_table"
-        // const data = await db.query(statement);
-        // if(data.length==0){
-        //     return { result: "error" };
-        // }
-        const result = "success";
+        const data = await db.query(statement, [fruit]);
+        if(data.length==0){
+            return { result: "error" };
+        }
+        const result =  "success" ;
         return {
             data,
             result,
@@ -225,6 +213,7 @@ async function create_season_table(fruit) {
         return { result: "error" };
     }
 }
+
 module.exports = {
     // add_some_data,
     search_realtime_by_sub,
@@ -233,5 +222,6 @@ module.exports = {
     search_history_by_sub,
     search_fruit,
     search_image_by_fruit,
-    get_all_markets
+    get_all_markets,
+    get_fruit_season
 };
