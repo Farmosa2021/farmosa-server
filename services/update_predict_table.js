@@ -42,7 +42,7 @@ async function update() {
     // ignore 1 lines;";
     
     // await db.query(loadStatement);
-    await db.load_query('./data/predict_table.csv');
+    await db.load_query('./data/history_price.csv');
 
     console.log("Update predict table successfully.");
 }
