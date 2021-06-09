@@ -1,7 +1,7 @@
 const db = require("./db");
 
 async function search_realtime_by_sub(fruit, market) {
-    var statement = "SELECT * FROM price_query where item LIKE '%" + fruit + "%' and market LIKE '%" + market + "%'";
+    var statement = "SELECT * FROM price_query where item LIKE '%" + fruit + "%' and market = " + market;
     if (fruit == '' && market == '') {
         statement = "SELECT * FROM price_query LIMIT 10";
     }
@@ -10,7 +10,7 @@ async function search_realtime_by_sub(fruit, market) {
     }
 
     else if (fruit == '' && market != '') {
-        statement = "SELECT * FROM price_query WHERE market LIKE '%" + market +"%'";
+        statement = "SELECT * FROM price_query WHERE market =" + market;
     }
     try{
         const data = await db.query(statement);
@@ -44,7 +44,7 @@ async function search_realtime_by_fullname(fruit, market) {
     try{
         const data = await db.query(statement);
         if(data.length==0){
-            return { result: "error" };
+            return { result: "no result" };
         }
         const result =  "success" ;
         return {
