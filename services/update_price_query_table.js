@@ -7,7 +7,7 @@ async function update(){
     await db.query("DROP TABLE IF EXISTS price_query");
     var createStatament = "CREATE TABLE IF NOT EXISTS price_query( \
         date DATE not null, \
-        item VARCHAR(30) not null, \
+        item VARCHAR(30), \
         market VARCHAR(10) not null, \
         high_price FLOAT, \
         mid_price FLOAT, \

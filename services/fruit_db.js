@@ -94,9 +94,9 @@ async function search_history_by_sub(fruit) {
         columns += (", " +name_list[i].Field)
     }
     try{
-        statement1 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-01-28' AND '2021-04-28'"
-        statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-11-28' AND '2021-04-28'"
-        statement3 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-04-28' AND '2021-04-28'"
+        statement1 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-03-08' AND '2021-06-08'"
+        statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-12-08' AND '2021-06-08'"
+        statement3 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-06-08' AND '2021-06-08'"
         const data_6 = await db.query(statement3);
         const data_3 = await db.query(statement2);
         const data_1 = await db.query(statement1);
@@ -139,9 +139,9 @@ async function search_history_by_fullname(fruit) {
     // columns = columns.slice(0, -2)  
     // console.log("'"+columns+"'")
     try{
-        statement1 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-01-28' AND '2021-04-28'"
-        statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-11-28' AND '2021-04-28'"
-        statement3 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-04-28' AND '2021-04-28'"
+        statement1 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2021-03-08' AND '2021-06-08'"
+        statement2 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-12-08' AND '2021-06-08'"
+        statement3 = "SELECT " + columns + " FROM predict_table WHERE 時間 between '2020-06-08' AND '2021-06-08'"
         const data_6 = await db.query(statement3);
         const data_3 = await db.query(statement2);
         const data_1 = await db.query(statement1);
