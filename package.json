@@ -1,0 +1,34 @@
+{
+  "name": "farmosa-server",
+  "version": "1.0.0",
+  "description": "Farmosa server. Great.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "docker-compose up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Farmosa2021/farmosa-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Farmosa2021/farmosa-server/issues"
+  },
+  "homepage": "https://github.com/Farmosa2021/farmosa-server#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.9",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "requests": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10"
+  }
+}
